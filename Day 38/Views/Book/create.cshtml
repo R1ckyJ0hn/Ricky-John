@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model EFCore2.Models.Books
+@{
+    <center><h2>Your Book detail has been recorded into the books collection </h2></center>
+    <div style="background-color:aqua;border-block:dashed">
+        <center><table border="1" style="background-color:crimson">
+    <tr>
+        <td>Id:</td>
+        <td>@Model.BID</td>
+    </tr>
+    <tr>
+        <td>Book Name:</td>
+        <td>@Model.BookName</td>
+    </tr>
+    <tr>
+        <td>Author:</td>
+        <td>@Model.AuthorName</td>
+    </tr>
+    <tr>
+        <td>Id:</td>
+        <td>@Model.PublishingAgency<td>
+    </tr>
+
+
+
+
+</table></center >
+</div>
+}
