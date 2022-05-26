@@ -1,0 +1,209 @@
+﻿@model ClinicDeskApplication.Models.Schedules
+
+@{
+    ViewData["Title"] = "Scheduleapp";
+}
+<script>
+  
+    function myFunction() {
+        var x = document.getElementsByName("VisitDate").disabled;
+        document.getElementById("demo").innerHTML = x;
+}
+</script>
+<style>
+    body {
+        background-image: url("https://i0.wp.com/ese224.seas.upenn.edu/wp-content/uploads/2018/11/background-website-light-blue-wallpapers-background-2.jpg?ssl=1");
+        background-size: cover
+    }
+
+    .button1 {
+        background-color: white;
+        color: red;
+        border: groove;
+        padding: 10px 20px;
+        border-color: red;
+    }
+
+        .button1:hover {
+            background-color: red;
+            color: white;
+            border: white;
+        }
+
+    .button {
+        background-color: cornsilk;
+        padding: 10px 20px;
+        color: darkblue;
+        border: groove;
+    }
+
+        .button:hover {
+            background-color: darkblue;
+            color: white;
+            border: white;
+        }
+</style>
+
+<head>
+
+    <div style="background-color:bisque">
+
+
+
+
+
+        <table cellpadding="10" align="center" style="background-color:lightgoldenrodyellow">
+
+            <tr>
+                <td><b>Navigation menu</b></td>
+                <td>
+                    @using (Html.BeginForm("DoctorAdd", "Home", FormMethod.Post))
+
+                    {
+                        <button class="button" type="submit" name="AddDoctor">Add Doctor</button>
+                    }
+                </td>
+
+
+
+
+
+
+
+
+                <td>
+                    @using (Html.BeginForm("PatientAdd", "Home", FormMethod.Post))
+
+                    {
+                        <button class="button" type="submit" name="AddDoctor">Add Patient</button>
+                    }
+                </td>
+
+
+
+
+
+
+
+                <td style="background-color:deepskyblue">
+                    @using (Html.BeginForm("Scheduleapp", "Home", FormMethod.Post))
+
+                    {
+                        <button class="button" type="submit" name="AddDoctor">Schedule Appointments</button>
+                    }
+                </td>
+
+
+
+
+
+
+                <td>
+                    @using (Html.BeginForm("Viewappoint", "Home", FormMethod.Post))
+
+                    {
+                        <button class="button" type="submit" name="AddDoctor">View Appointments</button>
+                    }
+                </td>
+
+
+                <td>
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+
+                    {
+                        <button class="button1" type="submit" name="AddDoctor">Log Out</button>
+                    }
+                </td>
+
+
+            </tr>
+
+        </table>
+    </div>
+
+
+
+
+</head>
+@using (Html.BeginForm("Addschedule", "Home", FormMethod.Post))
+{
+    <h1>Schedule Appointment</h1>
+
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Scheduleapp">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <table cellpadding="5">
+                    <tr rowspan="6">
+                        <td><b>Specialisation:</b></td>
+
+                        <td>
+                            @Html.RadioButtonFor(m => m.Specializations, "General")General<hr />
+
+                            @Html.RadioButtonFor(m => m.Specializations, "Internal Medicine")Internal Medicine<hr />
+
+
+                            @Html.RadioButtonFor(m => m.Specializations, "Pediatrics") Pediatrics<hr />
+
+
+                            @Html.RadioButtonFor(m => m.Specializations, "Orthopedics") Orthopedics<hr />
+
+
+                            @Html.RadioButtonFor(m => m.Specializations, "Opthalmology") Ophthalmology
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <label asp-for="DoctorName" class="control-label"></label>
+                    <input asp-for="DoctorName" class="form-control" />
+                    <span asp-validation-for="DoctorName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="patientName" class="control-label"></label>
+                    <input asp-for="patientName" class="form-control" />
+                    <span asp-validation-for="patientName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VisitDate" class="control-label"></label>
+                    <input asp-for="VisitDate" type="date" class="form-control" />
+                    <span asp-validation-for="VisitDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <table cellpadding="5">
+                        <tr rowspan="4">
+                            <td><b>Appointment Time:</b></td>
+
+<tr>
+    <td>
+        <select name="AppointmentTime">
+            <option value="none">--None-</option>
+            <option value="1PM-2PM">1PM-2PM</option>
+            <option value="2PM-3PM">2PM-3PM</option>
+            <option value="3PM-4PM">3PM-4PM</option>
+            <option value="4PM-5PM">4PM-5PM</option>
+            <option value="5PM-6PM">5PM-6PM</option>
+            <option value="6PM-7PM">6PM-7PM</option>
+            <option value="7PM-8PM">7PM-8PM</option>
+            <option value="8PM-9PM">8PM-9PM</option>
+        </select>
+    </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <center> <input type="submit" value="Create" class="btn btn-primary" /></center>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

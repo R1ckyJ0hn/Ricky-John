@@ -1,0 +1,44 @@
+﻿@{
+    @model ClinicDeskApplication.Models.Users
+    ViewData["Title"] = "Login";
+}
+
+
+<html>
+<head>
+</head>
+<body>
+
+    <style>
+        body {
+            background-image: url("https://wallpaperboat.com/wp-content/uploads/2020/06/11/44809/dark-blue-06.jpg");
+            background-size: cover;
+        }
+    </style>
+    <div style="color:white">
+        <h2> Login using your credentials </h2>
+        <br /><br /><br /><br />
+    </div>
+
+
+    <table cellpadding="10 ">
+        @using (Html.BeginForm("Validate", "Home", FormMethod.Post))
+        {
+            @Html.Raw(TempData["msg"]);
+            <tr>
+                <td style="color:snow">Username:</td>
+                <td><input type="text" name="UserName" required /></td>
+                @Html.ValidationMessageFor(m=>m.UserName)
+            </tr>
+            <tr>
+                <td style="color:snow">Password:</td>
+                <td><input type="password" name="Password" required /></td>
+            </tr>
+            <tr>
+                <td><center><input type="submit" value="Login" /></center></td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>
